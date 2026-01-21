@@ -13,8 +13,6 @@ short_description: AI TTS that modulates voice based on emotion (VITS/XTTS)
 
 > **Giving AI a Human Voice** — Bridging the gap between robotic text and emotional expression.
 
-[![Open in Spaces](https://huggingface.co/datasets/huggingface/badges/resolve/main/open-in-hf-spaces-md.svg)](https://huggingface.co/spaces/Automate-GPT/Empathy-Engine-AI-TTS-Generator)
-
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?style=for-the-badge&logo=fastapi&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
@@ -29,6 +27,9 @@ In the rapidly evolving world of AI, text generation has mastered the "what," bu
 **The Empathy Engine** solves this by dynamically modulating vocal characteristics—pitch, speed, and pausing—based on the *detected emotion* of the text. Whether it's the breathless speed of **Joy**, the slow heaviness of **Sadness**, or the sharp intensity of **Anger**, this engine ensures the voice matches the message.
 
 ---
+
+[![Open in Spaces](https://huggingface.co/datasets/huggingface/badges/resolve/main/open-in-hf-spaces-md.svg)](https://huggingface.co/spaces/Automate-GPT/Empathy-Engine-AI-TTS-Generator)
+
 
 ## ✨ Key Features
 
