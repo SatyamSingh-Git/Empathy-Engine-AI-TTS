@@ -1,6 +1,19 @@
+---
+title: Empathy Engine
+emoji: 🎙️
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+pinned: false
+license: mit
+short_description: AI TTS that modulates voice based on emotion (VITS/XTTS)
+---
+
 # 🎙️ The Empathy Engine
 
 > **Giving AI a Human Voice** — Bridging the gap between robotic text and emotional expression.
+
+[![Open in Spaces](https://huggingface.co/datasets/huggingface/badges/resolve/main/open-in-hf-spaces-md.svg)](https://huggingface.co/spaces/Automate-GPT/Empathy-Engine-AI-TTS-Generator)
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?style=for-the-badge&logo=fastapi&logoColor=white)
