@@ -24,10 +24,32 @@ In the rapidly evolving world of AI, text generation has mastered the "what," bu
 *   **Hugging Face Transformers**: Powered by the `j-hartmann/emotion-english-distilroberta-base` model for state-of-the-art accuracy.
 *   **Intensity Scaling**: The system calculates an "intensity score" based on prediction confidence, scaling the vocal changes accordingly (e.g., "somewhat happy" vs. "ecstatic").
 
+### 🎨 UI Showcase
+
+<div align="center">
+  <img src="frontend/UI_images/image 1.png" alt="Empathy Engine UI - Main Interface" width="800"/>
+  <p><em>The Glassmorphic Main Interface</em></p>
+  
+  <img src="frontend/UI_images/image 2.png" alt="Empathy Engine UI - Waveform" width="45%" /> 
+  <img src="frontend/UI_images/image 3.png" alt="Empathy Engine UI - Controls" width="45%" />
+  <p><em>Real-time Visualizer & Emotion Controls</em></p>
+</div>
+
 ### 🗣️ Dynamic Voice Synthesis
-*   **VITS Integration**: Uses **Coqui TTS VITS** (Conditional Variational Autoencoder with Adversarial Learning) for high-fidelity, non-robotic speech.
-*   **Emotion-Specific Speakers**: Automatically switches VCTK voices to match the emotion (e.g., utilizing a deeper, slower voice for sadness).
-*   **Natural Pausing (Audio Stitching)**: Breaking new ground by chemically stitching audio chunks with emotion-calibrated silence (e.g., longer pauses for dramatic effect in anger).
+
+#### VITS Emotion-to-Speaker Mapping
+We don't just change speed; we utilize specific **VCTK Speaker IDs** to match the character of the voice to the emotion:
+
+| Emotion | VCTK Speaker | Character Traits | Modifiers |
+| :--- | :--- | :--- | :--- |
+| **😊 Joy** | `p226` | Bright, energetic female | 1.0x Speed (Standard) |
+| **😠 Anger** | `p225` | Lower pitch, forceful | 1.05x Speed (Intense) |
+| **😢 Sadness** | `p229` | Deep, resonant, slower | 0.75x Speed (Heavy) |
+| **😨 Fear** | `p231` | Tense, slightly higher | 1.0x Speed (Anxious) |
+| **😲 Surprise** | `p226` | Sharp attack | 1.0x Speed (Startled) |
+| **🤢 Disgust** | `p228` | Aversive, restrained | 0.9x Speed (Slow) |
+| **😐 Neutral** | `p230` | Balanced, clear | 0.9x Speed (Measured) |
+
 
 ### 🚀 Hybrid Model Architecture
 *   **Auto (Emotion)**: The default smart mode using local neural rendering.
@@ -200,6 +222,21 @@ We didn't just wrap a library; we **engineered a solution**:
 1.  **Dependency Harmony**: Successfully monkeypatched `torch.load` to allow modern PyTorch 2.6 to coexist with legacy XTTS checkpoints, checking a major compatibility blocker.
 2.  **Audio Stitching Strategy**: Standard TTS ignores punctuation timing. We implemented a custom "Stitcher" that physically inserts silence based on emotion (long pauses for *Anger*, short for *Joy*), creating a drastically more human cadence.
 3.  **Dynamic Speaker Mapping**: We don't just change pitch; we change *identities* (speakers) within the VITS dataset to best match the emotional timbre.
+
+---
+
+## ☁️ Deployment
+
+### Hugging Face Spaces (Docker)
+
+This project is ready for one-click deployment to Hugging Face Spaces using the provided `Dockerfile`.
+
+1.  Create a new Space on [Hugging Face](https://huggingface.co/new-space).
+2.  Select **Docker** as the SDK.
+3.  Upload this entire repository.
+4.  (Optional) Add your `ELEVENLABS_API_KEY` in the Space **Settings > Secrets**.
+
+The Space will automatically build and serve the application on port 7860.
 
 ---
 
