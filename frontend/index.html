@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="The Empathy Engine - AI service that gives AI a human voice through emotion-aware text-to-speech">
+    <title>The Empathy Engine | Giving AI a Human Voice</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <span class="logo-icon">✨</span>
+                <h1 class="logo-text">The Empathy Engine</h1>
+                <span class="logo-icon">✨</span>
+            </div>
+            <p class="tagline">Giving AI a Human Voice</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section glass-card">
+                <div class="input-header">
+                    <span class="section-icon">💭</span>
+                    <h2>Enter Your Text</h2>
+                </div>
+                <div class="textarea-container">
+                    <textarea id="text-input"
+                        placeholder="Type something emotional... Try: 'I'm so excited about this news!' or 'This is really frustrating...'"
+                        maxlength="500"></textarea>
+                    <div class="char-counter">
+                        <span id="char-count">0</span>/500
+                    </div>
+                </div>
+
+                <!-- Voice Model Selector -->
+                <div class="voice-selector">
+                    <label class="selector-label">🎭 Voice</label>
+                    <div class="voice-toggle">
+                        <button id="voice-auto" class="voice-btn active" data-model="vits-emotion">
+                            <span>🎯</span> Auto (Emotion)
+                        </button>
+                        <button id="voice-xtts" class="voice-btn" data-model="xtts">
+                            <span>🚀</span> XTTS v2 (High Quality)
+                        </button>
+                        <button id="voice-elevenlabs" class="voice-btn" data-model="elevenlabs">
+                            <span>☁️</span> ElevenLabs
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Audio Effects (Optional) -->
+                <details class="effects-panel">
+                    <summary>🎛️ Audio Effects (Optional)</summary>
+                    <div class="effects-controls">
+                        <div class="effect-control">
+                            <label for="pitch-slider">Pitch Shift</label>
+                            <input type="range" id="pitch-slider" min="-6" max="6" value="0" step="0.5">
+                            <span id="pitch-value">0</span>
+                        </div>
+                        <div class="effect-control">
+                            <label for="reverb-slider">Reverb</label>
+                            <input type="range" id="reverb-slider" min="0" max="1" value="0" step="0.1">
+                            <span id="reverb-value">0</span>
+                        </div>
+                    </div>
+                </details>
+
+                <button id="generate-btn" class="generate-button">
+                    <span class="btn-icon">🎙️</span>
+                    <span class="btn-text">Generate Voice</span>
+                    <div class="btn-ripple"></div>
+                </button>
+            </section>
+
+            <!-- Results Section -->
+            <section id="results-section" class="results-section hidden">
+                <div class="results-grid">
+                    <!-- Emotion Panel -->
+                    <div class="emotion-panel glass-card">
+                        <div class="emotion-header">
+                            <span id="emotion-emoji" class="emotion-emoji">😐</span>
+                            <div class="emotion-info">
+                                <h3 id="emotion-name">Neutral</h3>
+                                <div class="confidence-bar">
+                                    <div id="confidence-fill" class="confidence-fill" style="width: 0%"></div>
+                                </div>
+                                <span id="confidence-text" class="confidence-text">0%</span>
+                            </div>
+                        </div>
+                        <div class="voice-params">
+                            <h4>Voice Modulation</h4>
+                            <div class="param-list">
+                                <div class="param-item">
+                                    <span class="param-label">Rate:</span>
+                                    <span id="param-rate" class="param-value">0%</span>
+                                </div>
+                                <div class="param-item">
+                                    <span class="param-label">Pitch:</span>
+                                    <span id="param-pitch" class="param-value">0%</span>
+                                </div>
+                                <div class="param-item">
+                                    <span class="param-label">Volume:</span>
+                                    <span id="param-volume" class="param-value">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Audio Player Panel -->
+                    <div class="audio-panel glass-card">
+                        <div class="audio-header">
+                            <span class="section-icon">🎵</span>
+                            <h3>Audio Output</h3>
+                        </div>
+
+                        <!-- Waveform Visualizer -->
+                        <div class="waveform-container">
+                            <canvas id="waveform-canvas"></canvas>
+                        </div>
+
+                        <!-- Custom Audio Player -->
+                        <div class="audio-player">
+                            <button id="play-btn" class="play-button">
+                                <span class="play-icon">▶️</span>
+                            </button>
+                            <div class="progress-container">
+                                <div id="progress-bar" class="progress-bar">
+                                    <div id="progress-fill" class="progress-fill"></div>
+                                </div>
+                                <div class="time-display">
+                                    <span id="current-time">0:00</span>
+                                    <span id="duration">0:00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="audio-actions">
+                            <button id="download-btn" class="action-button">
+                                <span>📥</span> Download
+                            </button>
+                            <button id="share-btn" class="action-button">
+                                <span>🔗</span> Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section id="history-section" class="history-section">
+                <div class="history-header" id="history-toggle">
+                    <span class="section-icon">📜</span>
+                    <h3>Generation History</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div id="history-list" class="history-list collapsed">
+                    <p class="empty-history">No generations yet. Try creating one above!</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Built with ❤️ for the Empathy Challenge</p>
+        </footer>
+    </div>
+
+    <!-- Hidden Audio Element -->
+    <audio id="audio-element" preload="auto"></audio>
+
+    <!-- Scripts -->
+    <script src="/static/waveform.js"></script>
+    <script src="/static/app.js"></script>
+</body>
+
+</html>
