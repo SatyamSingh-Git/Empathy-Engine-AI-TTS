@@ -28,7 +28,7 @@ In the rapidly evolving world of AI, text generation has mastered the "what," bu
 
 ---
 
-[![Open in Spaces](https://huggingface.co/datasets/huggingface/badges/resolve/main/open-in-hf-spaces-md.svg)](https://huggingface.co/spaces/Automate-GPT/Empathy-Engine-AI-TTS-Generator)
+## LIVE APP: [![Open in Spaces](https://huggingface.co/datasets/huggingface/badges/resolve/main/open-in-hf-spaces-md.svg)](https://huggingface.co/spaces/Automate-GPT/Empathy-Engine-AI-TTS-Generator)
 
 
 ## ✨ Key Features
